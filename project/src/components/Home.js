@@ -1,37 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Buttons from "./Buttons";
+import Statistics from "./Statistics";
 
 const Home = () => {
+  const handleClick = (value, func) => {
+    func(value + 1);
+  };
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
   return (
     <div className="home">
       <h1>UniCafe</h1>
       <h3>Give Feedback:</h3>
-      <Buttons />
-      <h3>Statistics:</h3>
-      <div className=" statistics">
-        <div className=" stat good">
-          <h5>Good:</h5>
-          <p>10</p>
-        </div>
-        <div className=" stat neutral">
-          <h5>Neutral:</h5>
-          <p>10</p>
-        </div>
-        <div className=" stat bad">
-          <h5>Bad:</h5>
-          <p>10</p>
-        </div>
-      </div>
-      <div className=" stat average">
-        
-        <h5>Average:</h5>
-        <p>33</p>
-      </div>
-      <div className=" stat average positive">
-        
-        <h5>positive:</h5>
-        <p>33%</p>
-      </div>
+      <Buttons
+        handleClick={handleClick}
+        good={good}
+        setGood={setGood}
+        bad={bad}
+        neutral={neutral}
+        setBad={setBad}
+        setNeutral={setNeutral}
+      />
+      <Statistics good={good} bad={bad} neutral={neutral} />
     </div>
   );
 };
